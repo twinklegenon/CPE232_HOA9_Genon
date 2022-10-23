@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: update repository index (CentOS)
+    tags: always
+    dnf:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "CentOS"
+
+  - name: update repository index (Ubuntu)
+    tags: always
+    apt:
+      update_cache: yes
+    changed_when: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: prome_servers
+  become: true
+  roles:
+    - prome_servers
