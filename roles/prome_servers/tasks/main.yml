@@ -26,3 +26,4 @@
   tags: centos,prometheus
   command: snap install prometheus --classic
   when:  ansible_distribution == "CentOS"
+
